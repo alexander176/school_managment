@@ -1,0 +1,47 @@
+<odoo>
+    <record id="view_school_teacher_form" model="ir.ui.view">
+        <field name="name">school.teacher.form</field>
+        <field name="model">school.teacher</field>
+        <field name="arch" type="xml">
+            <form string="Teacher">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="profile"/>
+                        <field name="subject_ids" widget="one2many_list"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_school_teacher_tree" model="ir.ui.view">
+        <field name="name">school.teacher.tree</field>
+        <field name="model">school.teacher</field>
+        <field name="arch" type="xml">
+            <tree string="Teachers">
+                <field name="name"/>
+                <field name="profile"/>
+            </tree>
+        </field>
+    </record>
+     <!-- Acción para el modelo school.teacher -->
+     <record id="action_school_teacher" model="ir.actions.act_window">
+        <field name="name">Teachers</field>
+        <field name="res_model">school.teacher</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_school_teacher_tree" />
+        <field name="usage">menu</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Submenú para el modelo school.teacher -->
+    <menuitem
+        id="menu_school_teacher"
+        name="Teachers"
+        parent="menu_management"
+        action="action_school_teacher"
+        sequence="30"
+    />
+</odoo>

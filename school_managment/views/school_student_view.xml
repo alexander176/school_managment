@@ -1,0 +1,61 @@
+<odoo>
+    <record id="view_school_student_form" model="ir.ui.view">
+        <field name="name">school.student.form</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form string="Student">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="birth_date"/>
+                        <field name="age"/>
+                        <field name="final_exam_grade"/>
+                        <field name="subject_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_school_student_tree" model="ir.ui.view">
+        <field name="name">school.student.tree</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <tree string="Students">
+                <field name="name"/>
+                <field name="birth_date"/>
+                <field name="age"/>
+                <field name="final_exam_grade"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_school_student" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">school.student</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_school_student_tree" />
+        <field name="usage">menu</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem
+        id="menu_school_root"
+        name="School Management"
+        sequence="1"
+    />
+    <menuitem
+        id="menu_management"
+        name="Management"
+        parent="menu_school_root"
+    />
+
+    <menuitem
+        id="menu_school_student"
+        name="Students"
+        parent="menu_management"
+        action="action_school_student"
+        sequence="1"
+    />
+</odoo>

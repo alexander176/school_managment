@@ -1,0 +1,54 @@
+<odoo>
+    <record id="view_school_subject_form" model="ir.ui.view">
+        <field name="name">school.subject.form</field>
+        <field name="model">school.subject</field>
+        <field name="arch" type="xml">
+            <form string="Subject">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="credits"/>
+                        <field name="max_students"/>
+                        <field name="active"/>
+                        <field name="student_ids" widget="many2many_tags"/>
+                        <field name="teacher_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Árbol para school.subject -->
+    <record id="view_school_subject_tree" model="ir.ui.view">
+        <field name="name">school.subject.tree</field>
+        <field name="model">school.subject</field>
+        <field name="arch" type="xml">
+            <tree string="Subjects">
+                <field name="name"/>
+                <field name="credits"/>
+                <field name="max_students"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Acción para el modelo school.subject -->
+    <record id="action_school_subject" model="ir.actions.act_window">
+        <field name="name">Subjects</field>
+        <field name="res_model">school.subject</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_school_subject_tree" />
+        <field name="usage">menu</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Submenú para el modelo school.subject -->
+    <menuitem
+        id="menu_school_subject"
+        name="Subjects"
+        parent="menu_management"
+        action="action_school_subject"
+        sequence="20"
+    />
+</odoo>
